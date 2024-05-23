@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        .header{
+            border: 10px;
+            color: aqua;
+            background-color: burlywood;
+            margin-top: auto;
+
+            border-radius: 10px;
+            
+        }
+        body.div {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: #2b8c7c;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input[type="date"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #5b7cfa;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #4a6cea;
+        }
+        .age-card {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+    </style>
+</head>
+<body>
+   <h1 class="header"><marquee behavior="" direction="">Website is Created by Bhupendra kumar</marquee></h1> 
+    <div class="container">
+        <h1>Find your age</h1>
+        <input type="date" id="birthdate">
+        <button onclick="calculateAge()">Calculate</button>
+        <div class="age-card" id="ageCard">
+            <p id="ageText"></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateAge() {
+            const birthdate = document.getElementById('birthdate').value;
+            if (!birthdate) {
+                alert("Please select a birthdate.");
+                return;
+            }
+            const birthDate = new Date(birthdate);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            document.getElementById('ageText').innerText = `Your age is ${age} years.`;
+            document.getElementById('ageCard').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
